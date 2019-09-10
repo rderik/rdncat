@@ -1,4 +1,4 @@
-# rndcat
+# rdncat
 
 A Client-Server command-line tool that provides an echo server for `TCP` connections and a client to connect to any server accepting `TCP` connections.
 
