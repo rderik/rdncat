@@ -37,12 +37,21 @@ class ServerConnection {
             break
         }
     }
+
+    private func getHost() ->  NWEndpoint.Host? {
+        switch connection.endpoint {
+        case .hostPort(let host , _):
+            return host
+        default:
+            return nil
+        }
+    }
     
     private func setupReceive() {
         connection.receive(minimumIncompleteLength: 1, maximumLength: MTU) { (data, _, isComplete, error) in
             if let data = data, !data.isEmpty {
                 let message = String(data: data, encoding: .utf8)
-                print("connection \(self.id) did receive, data: \(data as NSData) string: \(message ?? "-")")
+                print("connection \(self.id) did receive, data: \(data as NSData) string: \(message ?? "-") ip: \(self.getHost() ?? "")")
                 self.send(data: data)
             }
             if isComplete {
