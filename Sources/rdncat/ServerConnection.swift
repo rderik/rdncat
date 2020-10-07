@@ -77,6 +77,7 @@ class ServerConnection {
     
     func stop() {
         print("connection \(id) will stop")
+        stop(error: nil)
     }
     
     
